@@ -28,6 +28,13 @@ module.exports = {
 				]
 			}]
 	},
+	devServer: {
+		port: 3000,
+		open: true,
+		proxy: {
+		  '/api/v1': 'http://localhost:8080'
+		}
+	  },
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './src/index.html'

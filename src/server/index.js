@@ -1,12 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 //Set up express app
 const app = express();
+app.use(cors());
 
 //connect to mongodb
-mongoose.connect('mongodb://localhost/scrum');
+mongoose.connect('mongodb://localhost/scrum', { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
@@ -19,6 +21,6 @@ app.use(function(err,req,res,next){
 });
 
 //Listen for requests
-app.listen(process.env.port || 3000 , function(){
+app.listen( 8080 , function(){
     console.log('I am listening');
 });
