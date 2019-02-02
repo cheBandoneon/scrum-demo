@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from './Card';
+import AddNewCard from './AddNewCard';
 
 /*==== List ====*/
 
@@ -19,6 +20,12 @@ class List extends Component {
                         /> 
                         )
                 }
+                <AddNewCard 
+                    id = { this.props.id }
+                    addNewCard = { this.props.addNewCard }
+                />
+
+                <button className="user-list__button user-list__button--underline" onClick = { ()=> this.props.deleteList(this.props.id) }>Delete</button>
             </div>
 			 );		    
 	}
