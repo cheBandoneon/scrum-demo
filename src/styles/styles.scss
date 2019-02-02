@@ -1,6 +1,5 @@
+@import 'misc/normalize';
 @import 'misc/_vars';
 @import 'mixins/_total-mixins';
-
-body { 
-    
-}
+@import 'misc/various';
+@import 'partials/board.scss';

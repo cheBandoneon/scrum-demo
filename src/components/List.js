@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
+import Card from './Card';
 
-/*==== App ====*/
+/*==== List ====*/
 
 class List extends Component {
 
 	render() {		
 		
 		return (
-			<li>
+			<div className="user-list">
+                <div className = "user-list__head">
+                    <h2>{this.props.name}</h2>
+                </div>
                 {
                     this.props.cards.map( (card) => 
-                         card.name 
+                        <Card 
+                            name = { card.name }
+                        /> 
                         )
                 }
-            </li>
+            </div>
 			 );		    
 	}
 }

@@ -1,0 +1,26 @@
+.board {
+    background: steelblue;
+    height: 100vh;
+    width: 100%;
+    @include flexbox;
+    @include justify-content( space-between );
+    @include align-items( flex-start);
+    overflow-x: auto;
+
+    .user-list {
+        background-color: silver;
+        border-radius: 5px;
+        min-width: 300px;
+        margin: 10px;
+        padding: 10px; 
+
+        .user-list__card {
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            font-size: .9rem;
+            margin-bottom: 8px;
+            padding: 5px;
+        }
+    }
+}
+
