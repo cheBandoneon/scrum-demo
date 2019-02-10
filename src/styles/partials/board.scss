@@ -3,7 +3,6 @@
     height: 100vh;
     width: 100%;
     @include flexbox;
-    @include justify-content( space-between );
     @include align-items( flex-start);
     overflow-x: auto;
 
@@ -18,8 +17,10 @@
     }
 
     .user-list__head {
+        padding-bottom: 10px;
 
         h2 {
+            font-size: 1.1rem;
             margin: 0;
         }
     }
@@ -29,13 +30,37 @@
         border-radius: 5px;
         font-size: .9rem;
         margin-bottom: 8px;
-        padding: 5px;
+        width: 100%;
+        overflow: hidden;
+        
+        &.isClicked {
+            
+        }
+
+        input {
+            
+            background-color: transparent;
+            border: none; 
+            border-radius: 5px;
+            padding: 5px;
+            width: 100%;
+            
+            &:focus {
+                outline: none;
+                border: 1px solid steelblue;
+            }
+        }
     }
 
     .user-list__button {
         border: none;
         background-color: transparent;
+        cursor: pointer;
         font-size: .8rem;
+    }
+
+    .user-list__button--underline {
+        text-decoration: underline;
     }
 
     .user-list__button--primary {
