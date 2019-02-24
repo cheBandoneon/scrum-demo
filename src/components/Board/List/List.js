@@ -13,26 +13,77 @@ class List extends Component {
     constructor(props){
         super(props);
         this.newCardButtonClick = this.newCardButtonClick.bind(this);
+        this.deleteList         = this.deleteList.bind(this);
+        this.onUpdateCard       = this.onUpdateCard.bind(this);
+        this.onDeleteCard       = this.onDeleteCard.bind(this);
     }
 
     async newCardButtonClick ( e , id ) {
 		e.preventDefault();
 		let eventForm = document.getElementById(id);
-		let newCardName = eventForm.querySelector('input[type=text]').value;
+        let newCardName = eventForm.querySelector('input[type=text]').value;
+        
+
         this.props.list.cards.push({ name: newCardName , description: '' });
-        console.log(this.props.list);
+
+
         const request = UpdateListRequest( this.props.list );
 
         try {
             const response = await fetch( url+id, request);
-            this.props.updateState( 'update' , this.props.list , id );
+            const returnedList = await response.json();
+            this.props.updateState( 'update' , await returnedList , id );
         }
         catch (error) {
 			console.log( error );
 		}
     }
 
-    async deleteList ( id ) {
+    async onUpdateCard ( value , id ) {
+        
+        this.props.list.cards
+            .map( (card) => {
+
+                if( card._id === id ) {
+                    card.name = value;
+                }
+                return card;
+        });
+
+        const request = UpdateListRequest( this.props.list );
+
+        try {
+            const response = await fetch( url + this.props.list._id , request );
+            this.props.updateState( 'update' , this.props.list , id );
+        }
+        catch (error) {
+            console.log( error );
+        }
+    }
+
+    async onDeleteCard ( e ) {
+
+        const id = e.currentTarget.getAttribute('data-other');
+        const updatedCards = this.props.list.cards.filter( card => card._id !== id );
+
+        this.props.list.cards = updatedCards;
+    
+        const request = UpdateListRequest( this.props.list );
+        
+        try {
+            const response = await fetch( url + this.props.list._id , request );
+            this.props.updateState( 'update' , this.props.list , this.props.list._id );
+        }
+
+        catch (error) {
+            console.log( error );
+        }
+    }
+
+
+    async deleteList ( e ) {
+    
+        const id = e.target.getAttribute('data-other');
 
         try {
             const response = await fetch( url + id, { method: 'DELETE' });
@@ -50,7 +101,8 @@ class List extends Component {
 	}
     
 
-	render() {			
+	render() {	
+        console.warn(this.props.list.cards);		
         return (
             <div className="user-list">
                 <div className = "user-list__head">
@@ -61,9 +113,11 @@ class List extends Component {
                         <Card 
                             key   = { index }
                             name  = { card.name }
-                            id    = { this.props._id }
-                            updateCardItem = { this.props.updateCardItem }
+                            id    = { card._id }
+                            onUpdateCard = { this.onUpdateCard }
+                            onDeleteCard = { this.onDeleteCard }
                         /> 
+                        
                         )
                 }
                 <UIButton 
@@ -78,8 +132,15 @@ class List extends Component {
                     newCardButtonClick = { this.newCardButtonClick }
                     togglePrompt       = { this.togglePrompt }
                 />
-
-                <button className="user-list__button user-list__button--underline" onClick = { ()=> this.deleteList(this.props.list._id) }>Delete</button>
+                <UIButton
+                    action      = { this.deleteList }
+                    label       = 'Delete'
+                    classList   = 'user-list__button user-list__button--underline'
+                    dataToggle  = ''
+                    otherData   = { this.props.list._id }
+                    type        = 'button'
+                />
+                
             </div>
         );	
     }	    

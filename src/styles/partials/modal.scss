@@ -1,0 +1,19 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.4);
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+}
+
+.modal-content {
+    border-radius: 5px;
+    width: 70%;
+    max-width: 500px;
+    background: white;
+    padding: 20px;
+}

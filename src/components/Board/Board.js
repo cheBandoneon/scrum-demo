@@ -28,11 +28,12 @@ class Board extends Component {
     } 
 
 	render() {		
-    
+
 		return (
 			<div className="board">
                 {
                     this.props.lists.map( (list) => 
+                        
                         <List 
                             list  = { list }
                             updateState = { this.props.updateState }

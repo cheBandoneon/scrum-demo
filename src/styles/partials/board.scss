@@ -32,6 +32,14 @@
         margin-bottom: 8px;
         width: 100%;
         overflow: hidden;
+        @include flexbox;
+        @include justify-content(space-between);
+        @include align-items(center);
+
+        span {
+            color: silver;
+            width: 70px;
+        }
         
         &.isClicked {
             
@@ -53,6 +61,7 @@
     }
 
     .user-list__button {
+        color: inherit;
         border: none;
         background-color: transparent;
         cursor: pointer;
