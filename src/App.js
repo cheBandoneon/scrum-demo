@@ -1,8 +1,11 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
-import Board from './Board/Board';
+import Board from './components/Board/Board';
 import url from './util/constants';
-
+import { Provider } from 'react-redux';
+import { applyMiddleware } from 'redux';
+import { createStore } from 'redux';
+import store from './store';
 /*==== App ====*/
 
 class App extends Component {
@@ -46,36 +49,24 @@ class App extends Component {
 			
 	}
 
-	fetchUserLists = () => {
-		fetch( url )
-      		.then(response => response.json())
-			.then( (data) => {
-				this.setState({ lists : data });
-				console.log(this.state);
-			});	
-	}
-
 	/*updateCardItem = ( value , id ) => {
 	}*/
 	
 
-	componentDidMount(){
-		this.fetchUserLists();		
-	}
 
 
 	render() {		
 		return (
-			<div className="page-wrapper">
-				{ this.state.lists ? 
-					<Board 
-						lists 		 		 = { this.state.lists }
-						updateState			 = { this.updateState }
-					/>
-					:
-					<h2>Loading...</h2>
-				}
-			</div>
+			<Provider store={store}>
+				<div className="page-wrapper">
+					{ this.state.lists ? 
+						<Board 
+						/>
+						:
+						<h2>Loading...</h2>
+					}
+				</div>
+			</Provider>
 			 );		    
 	}
 }

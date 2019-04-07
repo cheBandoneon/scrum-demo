@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import Card from './Card';
 import AddNewPrompt from './AddNewPrompt';
 import UIButton from './UIButton';
-import url from '../../util/constants';
+import url from '../../../util/constants';
 import UpdateListRequest from './utils/UpdateListRequest';
-
+import { deleteList } from '../../../actions/listActions';
+import { connect } from 'react-redux';
 
 /*==== List ====*/
 
@@ -85,13 +86,7 @@ class List extends Component {
     
         const id = e.target.getAttribute('data-other');
 
-        try {
-            const response = await fetch( url + id, { method: 'DELETE' });
-            this.props.updateState( 'delete' , '' , id );
-        }
-        catch (error) {
-			console.log( error );
-		}
+        this.props.deleteList(id);
 
     }
     
@@ -146,4 +141,4 @@ class List extends Component {
     }	    
 	
 }
-export default List;
+export default connect( null , {deleteList} ) (List);

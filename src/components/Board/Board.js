@@ -1,53 +1,41 @@
 import React, { Component } from 'react';
 import List from './List/List';
-import AddListRequest from '../util/addListRequest';
-import url from '../util/constants';
+import AddListRequest from '../../util/addListRequest';
+import { fetchLists } from '../../actions/listActions';
+import { connect } from 'react-redux';
+import AddNewListForm from './List/AddNewListForm';
 
 /*==== Board ====*/
 
 class Board extends Component {
 
-    constructor(props){
-        super(props);
-        this.newListButtonClick = this.newListButtonClick.bind(this);
+
+    componentDidMount() {
+        this.props.fetchLists();
+        console.log(this.props);
     }
 
-    async newListButtonClick(e) {
-		e.preventDefault();
-		const listName = document.getElementById('new-list').value;
-		const request = AddListRequest(listName);
-
-		try {
-			const response = await fetch( url , request );
-			const newList = await response.json();
-			this.props.updateState( 'post' , newList );
-		}
-		catch (error) {
-			console.log( error );
-		}
-    } 
-
 	render() {		
-
+        console.log(this.props);
 		return (
 			<div className="board">
                 {
-                    this.props.lists.map( (list) => 
-                        
+                    this.props.lists ? this.props.lists.map( (list) => 
                         <List 
                             list  = { list }
                             updateState = { this.props.updateState }
                         />
-                    ) 
+                    ) : <h1>Test</h1>
                 }
-                <div className = "user-list user-list--add">
-                    <form onSubmit = { (e) => this.newListButtonClick(e) } >
-                        <input type="text" name="new-list" id="new-list" className="board__input" />
-                        <input type="submit" className = "user-list__button user-list__button--primary" value="Add new"/>
-                    </form>
-                </div>
+                <AddNewListForm></AddNewListForm>
             </div>
 			 );		    
 	}
 }
-export default Board;
+
+const mapStateToProps = state => ({
+    lists: state.lists.lists,
+    deletedList: state.lists.deletedList
+});
+
+export default connect( mapStateToProps , { fetchLists } )( Board );
