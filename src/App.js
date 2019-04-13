@@ -15,46 +15,6 @@ class App extends Component {
 		this.state = { lists : [] };
 	}
 
-	updateState = ( action , list , id ) => {
-
-		let lists = this.state.lists;
-	
-		switch (action) {
-
-			case 'post':
-				lists.push(list);
-				this.setState({ lists : lists });
-				
-				break;
-
-			case 'update':
-
-				let updatedLists = this.state.lists
-					.map( currList => {
-						if( currList._id === id )
-							currList = list;
-						
-						return currList;
-					});
-				this.setState({ lists : updatedLists });
-	
-				break;
-				
-			case 'delete':
-
-				let listsWithoutDeletedList = this.state.lists.filter( list => list._id !== id );
-				this.setState({ lists : listsWithoutDeletedList });
-				
-		} 
-			
-	}
-
-	/*updateCardItem = ( value , id ) => {
-	}*/
-	
-
-
-
 	render() {		
 		return (
 			<Provider store={store}>

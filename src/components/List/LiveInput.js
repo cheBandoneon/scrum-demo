@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { throws } from 'assert';
 
 /*==== Card ====*/
 
@@ -20,6 +21,13 @@ class LiveInput extends Component {
 
     componentWillUnmount() {
         console.log("unmounted");
+    }
+
+    componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (this.props.name !== prevProps.name) {
+          this.setState({...this.state , value : this.props.name });
+        }
     }
     
 	render(){	

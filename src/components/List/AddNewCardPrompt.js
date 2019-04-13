@@ -3,7 +3,7 @@ import UIButton from './UIButton';
 
 /*==== AddNewCard ====*/
 
-const AddNewPrompt = ( props ) => {
+const AddNewCardPrompt = ( props ) => {
 
     return (
         <div>
@@ -22,4 +22,4 @@ const AddNewPrompt = ( props ) => {
         </div>
     );		    
 }
-export default AddNewPrompt;
+export default AddNewCardPrompt;

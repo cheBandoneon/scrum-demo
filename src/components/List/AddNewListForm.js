@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { postList } from '../../../actions/listActions';
+import { postList } from '../../actions/listActions';
 import { connect } from 'react-redux';
 
 /*==== Board ====*/
@@ -36,8 +36,18 @@ class AddNewListForm extends Component {
 		return (
             <div className = "user-list user-list--add">
                 <form onSubmit = { (e) => this.onSubmit(e) } >
-                    <input type="text" name="new-list" value= {this.state.newListName} id="new-list" className="board__input" onChange={ (e) => this.onChange(e) } />
-                    <input type="submit" className = "user-list__button user-list__button--primary" value="Add new"/>
+                    <input 
+                        type        = "text" 
+                        name        = "new-list" 
+                        value       = {this.state.newListName} 
+                        id          = "new-list" 
+                        className   = "board__input" 
+                        onChange    = { (e) => this.onChange(e) } 
+                    />
+                    <input 
+                        type        = "submit" 
+                        className   = "user-list__button user-list__button--primary" 
+                        value       = "Add new"/>
                 </form>
             </div>
 	    );		    

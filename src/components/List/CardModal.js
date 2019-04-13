@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
-import UIButton from './../UIButton';
-import LiveInput from './../LiveInput';
+import UIButton from './UIButton';
+import LiveInput from './LiveInput';
 
 /*==== Card ====*/
 

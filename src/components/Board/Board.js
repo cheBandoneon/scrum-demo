@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
-import List from './List/List';
-import AddListRequest from '../../util/addListRequest';
+import List from '../List/List';
 import { fetchLists } from '../../actions/listActions';
 import { connect } from 'react-redux';
-import AddNewListForm from './List/AddNewListForm';
+import AddNewListForm from '../List/AddNewListForm';
 
 /*==== Board ====*/
 
 class Board extends Component {
 
-
     componentDidMount() {
         this.props.fetchLists();
-        console.log(this.props);
     }
 
 	render() {		
-        console.log(this.props);
 		return (
 			<div className="board">
                 {
@@ -35,7 +31,6 @@ class Board extends Component {
 
 const mapStateToProps = state => ({
     lists: state.lists.lists,
-    deletedList: state.lists.deletedList
 });
 
 export default connect( mapStateToProps , { fetchLists } )( Board );
