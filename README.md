@@ -1,2 +1,2 @@
 # scrum-demo
-Scrum Practice Project
+A Trello Like App to practice React.js.
