@@ -1,7 +1,7 @@
 {
-  "name": "yourtangomood",
+  "name": "trello-clone",
   "version": "1.0.0",
-  "description": "The app that suggests tangos according to your mood",
+  "description": "Trello Like Demo",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
@@ -11,7 +11,7 @@
     "dev": "concurrently \"npm start\" \"npm run server\""
   },
   "keywords": [
-    "tango"
+    ""
   ],
   "author": "cheBandoneon",
   "license": "ISC",
@@ -25,19 +25,19 @@
     "cors": "^2.8.5",
     "css-loader": "^1.0.1",
     "html-webpack-plugin": "^3.2.0",
-    "node-sass": "^4.10.0",
     "nodemon": "^1.18.9",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "webpack": "^4.25.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "mongoose": "^5.4.9",
+    "mongoose": "^5.9.16",
+    "node-sass": "^4.14.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^6.0.1",

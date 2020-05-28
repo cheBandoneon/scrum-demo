@@ -21,7 +21,7 @@ class Board extends Component {
                             list  = { list }
                             updateState = { this.props.updateState }
                         />
-                    ) : <h1>Test</h1>
+                    ) : <h1>Nothing here..</h1>
                 }
                 <AddNewListForm></AddNewListForm>
             </div>
